@@ -11,9 +11,9 @@
 	</parent>
 	
 	<groupId>com.liveasy</groupId>
-	<artifactId>sharedEntity</artifactId>
+	<artifactId>sharedentity</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sharedEntity</name>
+	<name>sharedentity</name>
 	<description>shared project for Entities</description>
 	
 	<properties>

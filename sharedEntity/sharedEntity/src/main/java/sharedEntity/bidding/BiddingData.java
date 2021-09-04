@@ -24,6 +24,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "transporterId", "loadId" }) })
 @Entity
+// Bidding data entity class
 public @Data class BiddingData {
 
 	@Id

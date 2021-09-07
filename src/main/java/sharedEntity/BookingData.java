@@ -1,4 +1,4 @@
-package sharedEntity.bidding;
+package sharedEntity;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -6,56 +6,51 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(uniqueConstraints = {
+		@UniqueConstraint(name = "UniqueTransporterAndLoad", columnNames = { "transporterId", "loadId" }) })
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = { "transporterId", "loadId" }) })
-@Entity
-// Bidding data entity class
-public @Data class BiddingData {
-
-	@Id
-	private String bidId;
-
-	@NotBlank(message = "Transporter Id can not be null")
-	private String transporterId;
-	@NotBlank(message = "Load Id can not be null")
-	private String loadId;
-
-	@NotNull(message = "Current Bid can not be null")
-	private Long currentBid;
-
-	private Long previousBid;
-
-	@Enumerated(EnumType.STRING)
-	@NotNull(message = "Unit can not be null")
-	public Unit unitValue;
+public @Data class BookingData {
 
 	public enum Unit {
 		PER_TON, PER_TRUCK
 	}
 
-	@Column(name = "truckId")
+	@Id
+	private String bookingId;
+
+	@NotBlank(message = "Transporter Id can not be null")
+	private String transporterId;
+	@NotBlank(message = "Load Id can not be null")
+	private String loadId;
+	@NotBlank(message = "PostLoadId Id can not be null")
+	private String postLoadId;
+
+	private Long rate;
+	private Unit unitValue;
+
+	@Column(name = "truckIds")
 	@ElementCollection(targetClass = String.class)
+	@NotEmpty
 	private List<String> truckId;
 
-	private Boolean transporterApproval;
-	private Boolean shipperApproval;
-
-	private String biddingDate;
+	private Boolean cancel;
+	private Boolean completed;
+	private String bookingDate;
+	private String completedDate;
 
 	@CreationTimestamp
 	public Timestamp timestamp;

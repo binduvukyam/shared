@@ -12,7 +12,7 @@
 	
 	<groupId>com.liveasy</groupId>
 	<artifactId>sharedentity</artifactId>
-	<version>0.0.6-SNAPSHOT</version>
+	<version>0.0.7-SNAPSHOT</version>
 	<name>sharedentity</name>
 	<description>shared project for Entities</description>
 	
@@ -81,7 +81,7 @@
 		<repository>
 		<id>github</id>
 		<name>GitHub Packages</name>
-		<url>https://maven.pkg.github.com/binduvukyam/shared</url>
+		<url>https://maven.pkg.github.com/liveasy97/sharedEntity</url>
 		</repository>
 	</distributionManagement>
 </project>
